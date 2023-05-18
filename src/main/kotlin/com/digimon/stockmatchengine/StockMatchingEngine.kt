@@ -7,8 +7,6 @@ class StockMatchingEngine {
     private val orderBookOfSymbol = ConcurrentHashMap<String, OrderBook>()
 
     fun submitOrder(order: Order) {
-        orderBookOfSymbol.computeIfAbsent(order.symbol) { OrderBook() }
-
         val orderBook = orderBookOfSymbol.getOrPut(order.symbol) { OrderBook() }
         orderBook.addOrder(order)
 
